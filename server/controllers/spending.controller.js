@@ -17,3 +17,19 @@ export const createSpending = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+export const getAllSpending = async (req, res) => {
+
+    try {
+        const spendings = await Spending.find();
+
+        if (!spendings) {
+            res.status(201).json({ message: 'Could not find spendings' });
+        }
+
+        res.status(200).json(spendings);
+    } catch (error) {
+        console.log('Failed to get spendings');
+        res.status(500).json({ error: error.message });
+    }
+}
